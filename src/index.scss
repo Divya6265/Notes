@@ -1,0 +1,141 @@
+/* main page notes header */
+*{
+    font-family:sans-serif;
+    background-color: #1b1a1a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.btn{
+    border: none;
+    font-size: 30px;
+}
+
+.notes__header{
+    margin: 25px auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    h1{
+        font-size: 38px;
+    }
+    //  search icon
+    .searchicon{
+        margin: 10px 10px auto auto;
+        font-size: 30px;
+    }
+}
+
+
+// note item display
+
+
+.note__item {
+    border-radius: 10px;
+    display: block;
+    text-decoration: none;
+    margin:15px 10px;
+    padding: 15px;
+    *{
+        background-color: #343434;
+    }
+    .note__title {
+        font-size: 19px;
+    }
+    .note__title::first-letter{
+        text-transform: capitalize;
+    }
+    .note__content{
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+    .note__date{
+        padding-top: 6px;
+        font-size: 12px;    
+    }
+}
+
+// notes add or create notes icons
+.add_btn{
+    background-color: lightblue;
+    font-size: 30px;
+    display: block;
+    padding: 15px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50%;
+}
+
+// search bar header
+.search__notes{
+    display: flex;
+    padding: 20px 10px;
+    border-bottom: 1px solid rgba(255,255,255,.25);
+
+    #search{
+        margin: -9px 0 0 10px;
+        border: none;
+        width: 80%;
+        color: #fff;
+        font-size: 18px;
+    }
+    #search:focus{
+        outline: none;
+    }
+    // .remove__search{
+
+    // }
+
+}
+
+
+// edit note or display note content
+.note__form{
+    padding: 20px;
+    
+    .title{
+        letter-spacing: 1.5px;
+        margin-top: 40px;
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,.25);
+        font-size: 25px;
+        width: 90%;
+        padding: 15px 10px;
+    }
+    .title:focus{
+        outline: none;
+    }
+   
+
+    .content{
+        padding: 20px 10px;
+        height: 90vh;
+        width: 90vw;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    .content:focus{
+        outline: none;
+    }
+    .save__note{
+        position: absolute;
+        top: 20px;
+        right: 25px;
+    }
+    
+    .backicon{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+    .tick_save{
+        color: rgba(255,255,255,.25);
+        font-size: 28px;
+    }
+    
+}
+img{
+    width: 400px;
+}
