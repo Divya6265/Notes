@@ -6,6 +6,7 @@ import NoteItem from '../components/NoteItem';
 
 function Notes({notes}) {
     const [showSearch, setShowSearch] = useState(false);
+   
   return (
    <>
      <section>

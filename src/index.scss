@@ -94,7 +94,7 @@
 // edit note or display note content
 .note__form{
     padding: 20px;
-    
+    overflow: hidden;
     .title{
         letter-spacing: 1.5px;
         margin-top: 40px;
@@ -110,11 +110,16 @@
    
 
     .content{
+        overflow: scroll;
+        scroll-margin: 0;
         padding: 20px 10px;
-        height: 90vh;
+        height: 70vh;
         width: 90vw;
         font-size: 18px;
         line-height: 30px;
+    }
+    .content::-webkit-scrollbar{
+        display: none;
     }
     .content:focus{
         outline: none;
@@ -138,4 +143,39 @@
 }
 img{
     width: 400px;
+}
+audio{
+    display: inline;
+}
+.delete__btn{
+    display: flex;
+}
+.footer__controls{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.media__icons{
+    // z-index: -1;
+
+    margin-left: 0px;
+}
+input[type='file']{
+    width: 80px;
+    height: 50px;
+    // z-index: 10;
+    // visibility: hidden;
+}
+
+input[name='imgUpload']::before{
+    content: "Upload file     ";
+}
+
+
+input[name='audioUpload']::before{
+    content: "Upload audio ";
 }

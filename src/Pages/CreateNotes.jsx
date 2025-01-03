@@ -1,39 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TiTick } from "react-icons/ti";
 import { v4 as uuid } from 'uuid';
 import { useCreateDateDetails } from "../components/useCreateDate";
 import { IoChevronBack } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from "../components/Footer"
 
-function CreateNotes({ setNotes }) {
+import {db} from "../assets/js/firebase"
+import { collection, addDoc } from 'firebase/firestore';
 
+
+function CreateNotes({ notes, showdelete, setShowDelete, updateNotes }) {
+  useEffect(()=>{
+    setShowDelete(false);  
+  }, setShowDelete );
+  
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const navigate = useNavigate();
 
-  const handleSumbit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    const contentHTML = document.getElementById('content').innerHTML; // Get HTML content
     if (title || content) {
-      const note = { id: uuid(), title: title, content: content, date: useCreateDateDetails() }
-      setNotes(prevNotes => [note, ...prevNotes])
-      navigate(`/edit-note/${note.id}`);
-    }
+     try{
+      const docRef = await addDoc(collection(db, "files"), {
+        content : contentHTML,
+        date : useCreateDateDetails(),
+        title : title
+      });
+      navigate(`/edit-note/${docRef.id}`);
+     }catch(err){
+      console.log("Error with firebase store in create note", err);
+     }
+    } 
 
   }
 
 
-  const uploaadImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        document.getElementById('content').innerHTML += img.outerHTML;
-      }
-      reader.readAsDataURL(file);
-    }
-  }
 
   return (
     <>
@@ -44,12 +48,13 @@ function CreateNotes({ setNotes }) {
 
         </div>
         {(title.length > 0) || (content.length > 0) ? (
-          <button onClick={handleSumbit} className='btn save__note'>
+          <button onClick={handleSubmit} className='btn save__note'>
             <TiTick />
           </button>
         ) : null}
-        <input type="file" onChange={uploaadImage} name="imgUpload" id="imgUpload" />
       </form>
+      <Footer showdelete = {showdelete} setShowDelete = {setShowDelete}/>
+
     </>
   )
 }
