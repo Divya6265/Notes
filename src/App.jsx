@@ -8,6 +8,7 @@ import SearchNotes from './Pages/SearchNotes'
 
  const App = () => {
   const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes')) || []);
+  const [showdelete, setShowDelete] = useState(false);
   useEffect(() => {
     localStorage.setItem('notes',JSON.stringify(notes))
   }, [notes]);
@@ -18,8 +19,8 @@ import SearchNotes from './Pages/SearchNotes'
       <BrowserRouter>
         <Routes>
            <Route  path='/' element={<Notes notes={notes}/>} />
-           <Route  path='/create-note' element={<CreateNotes setNotes = {setNotes} /> } />
-           <Route  path='/edit-note/:id' element={<EditNotes notes= {notes} setNotes={setNotes} />} />
+           <Route  path='/create-note' element={<CreateNotes setNotes = {setNotes} showdelete ={showdelete} setShowDelete={setShowDelete} /> } />
+           <Route  path='/edit-note/:id' element={<EditNotes notes= {notes} setNotes={setNotes} showdelete={showdelete} setShowDelete={setShowDelete} />} />
            <Route  path='/search-note' element={<SearchNotes notes= {notes} />} />
         </Routes>
       </BrowserRouter>

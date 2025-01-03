@@ -4,8 +4,14 @@ import { v4 as uuid } from 'uuid';
 import { useCreateDateDetails } from "../components/useCreateDate";
 import { IoChevronBack } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from "../components/Footer"
 
-function CreateNotes({ setNotes }) {
+function CreateNotes({showdelete, setShowDelete }) {
+ 
+  useEffect(()=>{
+    setShowDelete(false);  
+  }, setShowDelete );
+  
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -50,6 +56,8 @@ function CreateNotes({ setNotes }) {
         ) : null}
         <input type="file" onChange={uploaadImage} name="imgUpload" id="imgUpload" />
       </form>
+      <Footer showdelete = {showdelete} setShowDelete = {setShowDelete}/>
+
     </>
   )
 }
